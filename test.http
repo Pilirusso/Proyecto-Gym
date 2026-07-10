@@ -1,0 +1,14 @@
+### Crear un cliente
+POST http://localhost:8080/api/clientes
+Content-Type: application/json
+
+{
+  "nombre": "Juan Perez",
+  "dni": "12345678",
+  "fechaVencimiento": "2026-07-20",
+  "activo": true
+}
+
+### Listar clientes
+GET http://localhost:8080/api/clientes
+

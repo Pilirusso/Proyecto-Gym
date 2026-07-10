@@ -1,15 +1,22 @@
 package sistema_gym.repository; // Cambiado
 
-import sistema_gym.model.Cliente; // Esta linea le da permiso para ver y usar esa identidad
-import org.springframework.data.jpa.repository.JpaRepository; //Trae la herramienta JPAREPOSITORY es una interfaz que ya tiene programada todos los metodos basicos para hablar con una bd
-import org.springframework.stereotype.Repository; // le dice a spring que esta clase es un repositorio
+import sistema_gym.model.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository // es una etiqueta que le dice a Spring: que el archivo debe ser gestionado por el contenedor de Spring. Permite que otros archivos (Como el service) pueden inyectar o usar ese repositorio mas facil
-public interface ClienteRepository extends JpaRepository<Cliente, Long> { //Esto hace todo el trabajo. Spring boot analiza la clase cliente y genera auto todo el codigo necesaroi para comunciarse con gym_raido.db
+import java.util.List;
+import java.util.Optional;
 
-    Cliente findByDni(String dni);
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+
+    Optional<Cliente> findByDni(String dni);
+
+    boolean existsByDni(String dni);
+
+    List<Cliente> findByNombreContainingIgnoreCase(String nombre);
+
+    List<Cliente> findByApellidoContainingIgnoreCase(String apellido);
+
 }
-
 /*public interface ClienteRepository extends JpaRepository<Cliente, Long>:
 interface: En Java, los repositorios se definen como interfaces. No llevan lógica propia, solo definen "qué" se puede hacer.
 extends JpaRepository: Aquí ocurre la magia. Al heredar de JpaRepository, tu interfaz "hereda" automáticamente métodos como .save(), .findAll(), .deleteById(), etc.

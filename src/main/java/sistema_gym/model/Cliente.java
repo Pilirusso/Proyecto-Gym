@@ -14,9 +14,7 @@ public class Cliente {
 
     @Column(unique = true) //ESTO CUMPLE CON LA REGLA DE NEGOCIO RN-01 (evita duplicados)
     private String dni;
-
     private String telefono;
-
     private LocalDate fechaAlta;
     private LocalDate fechaUltimoPago;
     private LocalDate fechaVencimiento;
@@ -89,12 +87,14 @@ public class Cliente {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public boolean isActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+
 }
 
